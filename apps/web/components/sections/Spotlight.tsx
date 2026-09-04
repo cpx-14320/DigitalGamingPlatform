@@ -33,6 +33,7 @@ export default function Spotlight() {
           gapClassName="gap-6"
           autoPlayMs={5000}
           fillHeight
+          showArrows={false}
         >
           {spotlightImages.map((img) => (
             <figure
