@@ -28,7 +28,7 @@ export default function Spotlight() {
         {/* 左：主題圖輪播（占 2/5）；圖維持 16:9，高度差由 figcaption 吸收 */}
         <Carousel
           ariaLabel="專題主圖輪播"
-          className="lg:col-span-2 lg:h-full"
+          className="min-w-0 lg:col-span-2 lg:h-full"
           slideClassName="basis-full"
           gapClassName="gap-6"
           autoPlayMs={5000}
@@ -55,7 +55,7 @@ export default function Spotlight() {
         {/* 右：條列輪播（占 3/5），一則 6 項＝2 欄 × 3 列（1:1 圖 + 內文）*/}
         <Carousel
           ariaLabel="專題項目輪播"
-          className="lg:col-span-3"
+          className="min-w-0 lg:col-span-3"
           slideClassName="basis-full"
           gapClassName="gap-6"
           showArrows={false}
