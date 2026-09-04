@@ -57,6 +57,7 @@ export default function Spotlight() {
           className="lg:col-span-3"
           slideClassName="basis-full"
           gapClassName="gap-6"
+          showArrows={false}
         >
           {rowSlides.map((rows, i) => (
             <ul key={i} className="grid gap-3 sm:grid-cols-2">
