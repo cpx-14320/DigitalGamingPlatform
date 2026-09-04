@@ -87,14 +87,6 @@ export default function GameCategories() {
                 <h3 className="mt-2 truncate text-sm font-medium text-gray-900">
                   {game.title}
                 </h3>
-                <div className="flex items-center justify-between">
-                  <span className="truncate text-xs text-gray-400">
-                    {game.genre}
-                  </span>
-                  <span className="shrink-0 text-sm font-bold text-orange-600">
-                    NT${game.price.toLocaleString()}
-                  </span>
-                </div>
               </article>
             ))}
           </Carousel>
