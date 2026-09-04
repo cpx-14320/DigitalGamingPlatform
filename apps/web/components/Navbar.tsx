@@ -9,7 +9,6 @@ const links = [
   { href: "#buy-points", label: "線上購點" },
   { href: "#entertainment", label: "娛樂中心" },
   { href: "#login-center", label: "登錄中心" },
-  { href: "#support", label: "客服中心" },
 ];
 
 // TODO: 文字多語系尚未接上，這裡只切換顯示的語言標籤
