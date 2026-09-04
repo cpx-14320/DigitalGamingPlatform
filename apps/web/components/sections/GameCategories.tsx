@@ -69,11 +69,11 @@ export default function GameCategories() {
         >
           <Carousel
             key={current.id}
-            /* lg：扣掉 5 個 gap-4（5rem）再除以 6，讓 6 欄完整呈現、不露出第 7 欄的半張 */
-            slideClassName="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-[calc((100%_-_5rem)/6)]"
+            /* lg：扣掉 7 個 gap-4（7rem）再除以 8，讓 8 欄完整呈現、不露出第 9 欄的半張 */
+            slideClassName="basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-[calc((100%_-_7rem)/8)]"
             gapClassName="gap-3 sm:gap-4"
             ariaLabel={`${current.label}輪播`}
-            step={3}
+            step={4}
           >
             {current.games.map((game) => (
               <article key={game.id} className="group">
