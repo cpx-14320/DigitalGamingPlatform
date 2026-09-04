@@ -148,7 +148,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
       <nav className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
-        <a href="#top" className="flex items-center gap-2 font-bold text-gray-900">
+        <a href="/" className="flex items-center gap-2 font-bold text-gray-900">
           <span className="grid size-8 place-items-center rounded-lg bg-orange-500 text-sm font-black text-white">
             N
           </span>
