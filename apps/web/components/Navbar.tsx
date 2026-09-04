@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 const links = [
   { href: "#member", label: "會員中心" },
-  { href: "/topup", label: "點數儲值" },
+  { href: "/topup", label: "購點儲值" },
   { href: "/topup-event", label: "儲值活動" },
-  { href: "#buy-points", label: "線上購點" },
   { href: "#entertainment", label: "娛樂中心" },
   { href: "#login-center", label: "登錄中心" },
 ];
