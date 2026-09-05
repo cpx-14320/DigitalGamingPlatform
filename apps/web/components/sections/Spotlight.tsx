@@ -37,14 +37,22 @@ export default function Spotlight() {
 
   return (
     <section id="spotlight" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-      <div className="mb-5 max-w-2xl">
-        <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
-          編輯精選專題
-        </h2>
-        <p className="mt-1 text-sm text-gray-500">
-          左側主題與右側清單皆可獨立輪播，右側每則顯示手機版 3 項（1 欄 × 3
-          列）、sm 以上 6 項（2 欄 × 3 列）。
-        </p>
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <div className="max-w-2xl">
+          <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
+            編輯精選專題
+          </h2>
+          <p className="mt-1 text-sm text-gray-500">
+            左側主題與右側清單皆可獨立輪播，右側每則顯示手機版 3 項（1 欄 × 3
+            列）、sm 以上 6 項（2 欄 × 3 列）。
+          </p>
+        </div>
+        <a
+          href="#"
+          className="text-sm font-medium text-orange-600 transition hover:text-orange-700"
+        >
+          view all →
+        </a>
       </div>
 
       <div className="grid items-start gap-6 lg:grid-cols-5 lg:items-stretch">
