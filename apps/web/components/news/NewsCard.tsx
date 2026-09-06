@@ -3,7 +3,14 @@ import Link from "next/link";
 import SkeletonImage from "@/components/SkeletonImage";
 import { newsCategoryLabel, type GameNewsCard } from "@/lib/data";
 
-export default function NewsCard({ card }: { card: GameNewsCard }) {
+export default function NewsCard({
+  card,
+  titleLines = 1,
+}: {
+  card: GameNewsCard;
+  /** 標題最多顯示幾行，超過以 … 截斷；預設 1 行 */
+  titleLines?: 1 | 2;
+}) {
   return (
     <Link
       href={`/news/${card.slug}`}
@@ -22,7 +29,11 @@ export default function NewsCard({ card }: { card: GameNewsCard }) {
           </span>
           <time dateTime={card.date}>{card.date}</time>
         </div>
-        <h3 className="mt-2 line-clamp-2 text-sm font-semibold text-gray-900 transition group-hover:text-orange-600">
+        <h3
+          className={`mt-2 text-sm font-semibold text-gray-900 transition group-hover:text-orange-600 ${
+            titleLines === 1 ? "line-clamp-1" : "line-clamp-2"
+          }`}
+        >
           {card.title}
         </h3>
         <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-gray-500">
