@@ -4,9 +4,9 @@ import Rankings from "@/components/sections/Rankings";
 import QuickMenu from "@/components/sections/QuickMenu";
 import GameShowcase from "@/components/sections/GameShowcase";
 import NewArrivals from "@/components/sections/NewArrivals";
-import ScreenshotGallery from "@/components/sections/ScreenshotGallery";
+import GameNews from "@/components/sections/GameNews";
 import GameCategories from "@/components/sections/GameCategories";
-import Spotlight from "@/components/sections/Spotlight";
+import Creators from "@/components/sections/Creators";
 import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 
@@ -19,8 +19,8 @@ export default function Home() {
       <NewArrivals />
       <Rankings />
       <GameCategories />
-      <ScreenshotGallery />
-      <Spotlight />
+      <GameNews />
+      <Creators />
       <Testimonials />
       <Pricing />
       <Features />

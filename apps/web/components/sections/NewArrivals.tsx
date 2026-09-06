@@ -74,7 +74,7 @@ export default function NewArrivals() {
               onClick={() => setSteps((s) => s + 1)}
               className="rounded-lg border border-gray-300 bg-white px-6 py-2.5 text-sm font-semibold text-gray-800 transition hover:bg-gray-50"
             >
-              顯示更多（剩餘 {remaining} 項）
+              顯示更多
             </button>
           </div>
         )}

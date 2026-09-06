@@ -1,6 +1,6 @@
 import Carousel from "@/components/Carousel";
 import SkeletonImage from "@/components/SkeletonImage";
-import { spotlightImages, spotlightRows, type SpotlightRow } from "@/lib/data";
+import { creatorImages, creatorRows, type CreatorRow } from "@/lib/data";
 
 const ITEMS_PER_SLIDE = 6; // sm 以上：2 欄 × 3 列
 const MOBILE_ITEMS_PER_SLIDE = 3; // 手機版：1 欄 × 3 列
@@ -11,7 +11,7 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return out;
 }
 
-function SpotlightRowItem({ row }: { row: SpotlightRow }) {
+function CreatorRowItem({ row }: { row: CreatorRow }) {
   return (
     <li>
       {/* href 之後換成實際導向頁面 */}
@@ -38,13 +38,13 @@ function SpotlightRowItem({ row }: { row: SpotlightRow }) {
   );
 }
 
-export default function Spotlight() {
-  const rowSlides = chunk(spotlightRows, ITEMS_PER_SLIDE);
-  const mobileRowSlides = chunk(spotlightRows, MOBILE_ITEMS_PER_SLIDE);
+export default function Creators() {
+  const rowSlides = chunk(creatorRows, ITEMS_PER_SLIDE);
+  const mobileRowSlides = chunk(creatorRows, MOBILE_ITEMS_PER_SLIDE);
 
   return (
     <section
-      id="spotlight"
+      id="creators"
       className="border-t border-gray-200 bg-white py-12"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -63,9 +63,9 @@ export default function Spotlight() {
         </div>
 
         <div className="grid items-start gap-6 lg:grid-cols-5 lg:items-stretch">
-          {/* 左：主題圖輪播（占 2/5）；圖維持 16:9，高度差由標題列吸收 */}
+          {/* 左：創作者主圖輪播（占 2/5）；圖維持 16:9，高度差由標題列吸收 */}
           <Carousel
-            ariaLabel="專題主圖輪播"
+            ariaLabel="創作者主圖輪播"
             className="min-w-0 lg:col-span-2 lg:h-full"
             slideClassName="basis-full"
             gapClassName="gap-6"
@@ -73,7 +73,7 @@ export default function Spotlight() {
             fillHeight
             showArrows={false}
           >
-            {spotlightImages.map((img) => (
+            {creatorImages.map((img) => (
               /* href 之後換成實際導向頁面 */
               <a
                 key={img.id}
@@ -96,7 +96,7 @@ export default function Spotlight() {
           {/* 右：條列輪播（占 3/5）。手機版一則 3 項＝1 欄 × 3 列，sm 以上一則 6 項＝2 欄 × 3 列 */}
           <div className="min-w-0 sm:hidden lg:col-span-3">
             <Carousel
-              ariaLabel="專題項目輪播"
+              ariaLabel="創作者項目輪播"
               slideClassName="basis-full"
               gapClassName="gap-6"
               showArrows={false}
@@ -104,7 +104,7 @@ export default function Spotlight() {
               {mobileRowSlides.map((rows, i) => (
                 <ul key={i} className="grid gap-3">
                   {rows.map((row) => (
-                    <SpotlightRowItem key={row.id} row={row} />
+                    <CreatorRowItem key={row.id} row={row} />
                   ))}
                 </ul>
               ))}
@@ -112,7 +112,7 @@ export default function Spotlight() {
           </div>
           <div className="hidden min-w-0 sm:block lg:col-span-3">
             <Carousel
-              ariaLabel="專題項目輪播"
+              ariaLabel="創作者項目輪播"
               slideClassName="basis-full"
               gapClassName="gap-6"
               showArrows={false}
@@ -120,7 +120,7 @@ export default function Spotlight() {
               {rowSlides.map((rows, i) => (
                 <ul key={i} className="grid gap-3 sm:grid-cols-2">
                   {rows.map((row) => (
-                    <SpotlightRowItem key={row.id} row={row} />
+                    <CreatorRowItem key={row.id} row={row} />
                   ))}
                 </ul>
               ))}
