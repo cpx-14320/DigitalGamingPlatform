@@ -14,7 +14,7 @@ export default function GameCategories() {
   return (
     <section
       id="categories"
-      className="border-y border-gray-200 bg-white py-12"
+      className="border-t border-gray-200 bg-white py-12"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">

@@ -19,8 +19,8 @@ export default function Home() {
       <NewArrivals />
       <Features />
       <Rankings />
-      <ScreenshotGallery />
       <GameCategories />
+      <ScreenshotGallery />
       <Spotlight />
       <Testimonials />
       <Pricing />
