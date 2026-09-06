@@ -51,7 +51,7 @@ export default function Spotlight() {
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
           <div className="max-w-2xl">
             <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
-              編輯精選專題
+              駐站創作者
             </h2>
           </div>
           <a
