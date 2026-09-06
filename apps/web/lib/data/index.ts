@@ -3,6 +3,7 @@
 // 各區塊資料逐步拆成 lib/data/<區塊>.ts，並由這裡 re-export，
 // 元件維持 import { ... } from "@/lib/data" 不變。
 export * from "./creators";
+export * from "./featured-picks";
 export * from "./member-task";
 export * from "./news";
 export * from "./pre";
@@ -31,18 +32,6 @@ export function listPrice(price: number, discount?: number): number {
   if (!discount) return price;
   return Math.round(price / (1 - discount / 100) / 10) * 10;
 }
-
-export type Feature = {
-  title: string;
-  desc: string;
-};
-
-export type Testimonial = {
-  name: string;
-  role: string;
-  quote: string;
-  avatar: string;
-};
 
 export const heroSlides: HeroSlide[] = [
   {
@@ -153,67 +142,6 @@ export const games: Game[] = [
     price: 300,
     discount: 15,
     image: "https://picsum.photos/seed/game-mythos-online/600/800",
-  },
-];
-
-export const features: Feature[] = [
-  {
-    title: "100% 正版授權",
-    desc: "所有序號皆由原廠或官方代理供貨，可綁定官方帳號永久持有。",
-  },
-  {
-    title: "付款後即時發碼",
-    desc: "多數商品自動出貨，結帳完成即在訂單頁顯示序號與啟用教學。",
-  },
-  {
-    title: "價格透明",
-    desc: "標示原價與折扣後金額，無隱藏手續費，特賣時間與庫存公開。",
-  },
-  {
-    title: "七日鑑賞期",
-    desc: "未使用序號可於七日內申請退款，流程線上完成、不需來回信件。",
-  },
-  {
-    title: "多元支付",
-    desc: "支援信用卡、行動支付、超商代碼與電子錢包，結帳一頁完成。",
-  },
-  {
-    title: "會員回饋金",
-    desc: "每筆消費回饋 1–3%，回饋金可直接折抵下次購買，無使用期限。",
-  },
-];
-
-export const testimonials: Testimonial[] = [
-  {
-    name: "阿哲",
-    role: "PC 玩家",
-    quote:
-      "季中特賣買了三款 3A，付款完訂單頁馬上就有序號，比官方商店還便宜一截。",
-    avatar: "https://picsum.photos/seed/avatar-jhe/120/120",
-  },
-  {
-    name: "Nina",
-    role: "實況主",
-    quote: "新作預購直接在這下，發售當天自動配送，開台前不用手忙腳亂找 key。",
-    avatar: "https://picsum.photos/seed/avatar-nina/120/120",
-  },
-  {
-    name: "老王",
-    role: "雙寶爸",
-    quote: "點數卡買了立刻發碼，小孩吵著要儲值也能馬上處理，回饋金累積得也快。",
-    avatar: "https://picsum.photos/seed/avatar-wang/120/120",
-  },
-  {
-    name: "Kevin",
-    role: "Switch 玩家",
-    quote: "有次序號綁定出問題，線上客服 20 分鐘就換一組新的，售後算是安心。",
-    avatar: "https://picsum.photos/seed/avatar-kevin/120/120",
-  },
-  {
-    name: "小蓁",
-    role: "學生",
-    quote: "常來撿特價的獨立遊戲，一款一兩百塊就入手，回饋金折一折又更省。",
-    avatar: "https://picsum.photos/seed/avatar-jhen/120/120",
   },
 ];
 
@@ -938,118 +866,6 @@ export const newArrivals: ArrivalItem[] = [
     tag: "冒險",
     price: 1390,
     image: "https://picsum.photos/seed/novaplay-arrival-12/240/240",
-  },
-  {
-    id: "arrival-13",
-    title: "迷航日記",
-    tag: "策略",
-    price: 120,
-    image: "https://picsum.photos/seed/novaplay-arrival-13/240/240",
-  },
-  {
-    id: "arrival-14",
-    title: "雪國郵差 節慶特別版",
-    tag: "競速",
-    price: 199,
-    image: "https://picsum.photos/seed/novaplay-arrival-14/240/240",
-  },
-  {
-    id: "arrival-15",
-    title: "群峰之上",
-    tag: "模擬",
-    price: 290,
-    image: "https://picsum.photos/seed/novaplay-arrival-15/240/240",
-  },
-  {
-    id: "arrival-16",
-    title: "夜行列車",
-    tag: "解謎",
-    price: 350,
-    image: "https://picsum.photos/seed/novaplay-arrival-16/240/240",
-  },
-  {
-    id: "arrival-17",
-    title: "沙丘領主：權力與沙 完全版",
-    tag: "RPG",
-    price: 450,
-    image: "https://picsum.photos/seed/novaplay-arrival-17/240/240",
-  },
-  {
-    id: "arrival-18",
-    title: "花火大會",
-    tag: "運動",
-    price: 520,
-    image: "https://picsum.photos/seed/novaplay-arrival-18/240/240",
-  },
-  {
-    id: "arrival-19",
-    title: "機械之心",
-    tag: "格鬥",
-    price: 690,
-    image: "https://picsum.photos/seed/novaplay-arrival-19/240/240",
-  },
-  {
-    id: "arrival-20",
-    title: "潮汐王國 導演剪輯版",
-    tag: "恐怖",
-    price: 790,
-    image: "https://picsum.photos/seed/novaplay-arrival-20/240/240",
-  },
-  {
-    id: "arrival-21",
-    title: "書頁旅人",
-    tag: "動作",
-    price: 890,
-    image: "https://picsum.photos/seed/novaplay-arrival-21/240/240",
-  },
-  {
-    id: "arrival-22",
-    title: "獵光者",
-    tag: "冒險",
-    price: 990,
-    image: "https://picsum.photos/seed/novaplay-arrival-22/240/240",
-  },
-  {
-    id: "arrival-23",
-    title: "碎星協奏：交響前奏 數位豪華組合",
-    tag: "策略",
-    price: 1190,
-    image: "https://picsum.photos/seed/novaplay-arrival-23/240/240",
-  },
-  {
-    id: "arrival-24",
-    title: "無聲海岸",
-    tag: "競速",
-    price: 1390,
-    image: "https://picsum.photos/seed/novaplay-arrival-24/240/240",
-  },
-  {
-    id: "arrival-25",
-    title: "節慶製造機",
-    tag: "模擬",
-    price: 120,
-    image: "https://picsum.photos/seed/novaplay-arrival-25/240/240",
-  },
-  {
-    id: "arrival-26",
-    title: "苔原孤旅",
-    tag: "解謎",
-    price: 199,
-    image: "https://picsum.photos/seed/novaplay-arrival-26/240/240",
-  },
-  {
-    id: "arrival-27",
-    title: "赤紅拍檔 週年紀念同捆",
-    tag: "RPG",
-    price: 290,
-    image: "https://picsum.photos/seed/novaplay-arrival-27/240/240",
-  },
-  {
-    id: "arrival-28",
-    title: "雲上莊園",
-    tag: "運動",
-    price: 350,
-    image: "https://picsum.photos/seed/novaplay-arrival-28/240/240",
   },
 ];
 

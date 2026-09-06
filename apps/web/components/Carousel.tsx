@@ -294,7 +294,8 @@ export default function Carousel({
         {slides.map((slide, i) => (
           <div
             key={i}
-            className={`shrink-0 grow-0 snap-start ${slideClassName}`}
+            /* min-w-0：讓 slide 依 flex-basis 決定寬度，不被內容（例如 truncate 標題）撐大而各張不等寬 */
+            className={`min-w-0 shrink-0 grow-0 snap-start ${slideClassName}`}
             role="group"
             aria-roledescription="slide"
             aria-label={`${i + 1} / ${slides.length}`}

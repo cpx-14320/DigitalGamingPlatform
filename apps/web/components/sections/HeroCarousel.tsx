@@ -9,6 +9,7 @@ export default function HeroCarousel() {
         autoPlayMs={6000}
         ariaLabel="首頁主打輪播"
         gapClassName="gap-4"
+        showArrows={false}
       >
         {heroSlides.map((slide) => (
           <div

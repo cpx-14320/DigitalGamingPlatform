@@ -72,9 +72,9 @@ export default function Rankings() {
                     ratioClassName="size-14 shrink-0 rounded-lg"
                     className="transition duration-500 group-hover:scale-105"
                   />
-                  <p className="min-w-0 self-center line-clamp-2 text-xs font-medium text-gray-900 transition group-hover:text-orange-600">
+                  <h4 className="min-w-0 self-center line-clamp-2 text-sm font-medium text-gray-900 transition group-hover:text-orange-600">
                     {item.title}
-                  </p>
+                  </h4>
                 </a>
               </li>
             ))}
@@ -89,7 +89,7 @@ export default function Rankings() {
             key={block.id}
             className="rounded-xl border border-gray-200 bg-white p-4"
           >
-            <h3 className="mb-3 text-sm font-semibold text-gray-900">
+            <h3 className="mb-3 text-base font-semibold text-gray-900">
               {block.label}
             </h3>
             <ul className="grid grid-cols-4 gap-3">
@@ -104,9 +104,9 @@ export default function Rankings() {
                         className="transition duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <p className="mt-1.5 line-clamp-2 text-xs font-medium text-gray-900 transition group-hover:text-orange-600">
+                    <h4 className="mt-1.5 line-clamp-2 text-sm font-medium text-gray-900 transition group-hover:text-orange-600">
                       {item.title}
-                    </p>
+                    </h4>
                   </a>
                 </li>
               ))}

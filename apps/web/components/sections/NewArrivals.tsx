@@ -1,37 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import SkeletonImage from "@/components/SkeletonImage";
 import { newArrivals } from "@/lib/data";
 
-// 手機版：3 欄 × 2 列 = 6 項；sm 以上：6 欄 × 2 列 = 12 項
-const MOBILE_PAGE_SIZE = 6;
-const DESKTOP_PAGE_SIZE = 12;
+// < lg（手機／平板）：3 欄 × 2 列 = 6 項
+// lg 以上（電腦）：6 欄 × 1 列 = 6 項
+// 每按一次「顯示更多」多 6 項
+const PAGE_SIZE = 6;
 
 export default function NewArrivals() {
-  // SSR 先以桌機值渲染，掛載後再依螢幕寬度校正，避免 hydration 不一致
-  const [pageSize, setPageSize] = useState(DESKTOP_PAGE_SIZE);
   const [steps, setSteps] = useState(1);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 639px)"); // < sm
-    const apply = () =>
-      setPageSize(mq.matches ? MOBILE_PAGE_SIZE : DESKTOP_PAGE_SIZE);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, []);
-
-  const visible = steps * pageSize;
+  const visible = steps * PAGE_SIZE;
   const shown = newArrivals.slice(0, visible);
   const remaining = Math.max(newArrivals.length - visible, 0);
 
   return (
-    <section
-      id="arrivals"
-      className="border-y border-gray-200 bg-white py-12"
-    >
+    <section id="arrivals" className="border-y border-gray-200 bg-white py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -47,7 +34,7 @@ export default function NewArrivals() {
           </a>
         </div>
 
-        <ul className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-6">
+        <ul className="grid grid-cols-3 gap-4 lg:grid-cols-6">
           {shown.map((item) => (
             <li key={item.id}>
               {/* href 之後換成實際導向頁面 */}

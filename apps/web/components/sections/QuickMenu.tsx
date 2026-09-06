@@ -105,6 +105,7 @@ export default function QuickMenu() {
         slideClassName="basis-1/4 sm:basis-1/6 lg:basis-[12.5%]"
         gapClassName="gap-0"
         step={4}
+        showArrows={false}
       >
         {quickLinks.map((item) => (
           <a
