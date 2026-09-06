@@ -16,9 +16,6 @@ export default function GameShowcase() {
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">本日特賣</h2>
-          <p className="mt-1 text-sm text-gray-500">
-            每日 00:00 更新，售完不補，把握折扣。
-          </p>
         </div>
         <a
           href="#"
@@ -36,8 +33,9 @@ export default function GameShowcase() {
         {games.map((game) => {
           const original = listPrice(game.price, game.discount);
           return (
-            <article
+            <a
               key={game.id}
+              href="#"
               className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:border-gray-300 hover:shadow-md"
             >
               <div className="relative">
@@ -81,7 +79,7 @@ export default function GameShowcase() {
                   ) : null}
                 </div>
               </div>
-            </article>
+            </a>
           );
         })}
       </Carousel>

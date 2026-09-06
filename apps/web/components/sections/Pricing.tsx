@@ -52,9 +52,6 @@ export default function Pricing() {
     >
       <div className="mb-6 max-w-2xl">
         <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">會員方案</h2>
-        <p className="mt-1 text-sm text-gray-500">
-          回饋金可直接折抵下次消費，無使用期限、隨時可取消。
-        </p>
       </div>
 
       <div className="grid gap-5 lg:grid-cols-3">

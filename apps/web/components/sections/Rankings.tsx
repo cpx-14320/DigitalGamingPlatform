@@ -60,18 +60,22 @@ export default function Rankings() {
         >
           <ul className="grid grid-cols-2 gap-3">
             {activeBlock.items.map((item) => (
-              <li
-                key={item.id}
-                className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-2.5 shadow-sm transition hover:border-gray-300"
-              >
-                <SkeletonImage
-                  src={item.image}
-                  alt={`${item.title} 商品圖`}
-                  ratioClassName="size-14 shrink-0 rounded-lg"
-                />
-                <p className="min-w-0 self-center line-clamp-2 text-xs font-medium text-gray-900">
-                  {item.title}
-                </p>
+              <li key={item.id}>
+                {/* href 之後換成實際導向頁面 */}
+                <a
+                  href="#"
+                  className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-2.5 shadow-sm transition hover:border-gray-300 hover:shadow-md"
+                >
+                  <SkeletonImage
+                    src={item.image}
+                    alt={`${item.title} 商品圖`}
+                    ratioClassName="size-14 shrink-0 rounded-lg"
+                    className="transition duration-500 group-hover:scale-105"
+                  />
+                  <p className="min-w-0 self-center line-clamp-2 text-xs font-medium text-gray-900 transition group-hover:text-orange-600">
+                    {item.title}
+                  </p>
+                </a>
               </li>
             ))}
           </ul>
@@ -90,17 +94,20 @@ export default function Rankings() {
             </h3>
             <ul className="grid grid-cols-4 gap-3">
               {block.items.map((item) => (
-                <li key={item.id} className="group">
-                  <div className="overflow-hidden rounded-lg border border-gray-200">
-                    <SkeletonImage
-                      src={item.image}
-                      alt={`${item.title} 商品圖`}
-                      className="transition duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <p className="mt-1.5 line-clamp-2 text-xs font-medium text-gray-900">
-                    {item.title}
-                  </p>
+                <li key={item.id}>
+                  {/* href 之後換成實際導向頁面 */}
+                  <a href="#" className="group block">
+                    <div className="overflow-hidden rounded-lg border border-gray-200">
+                      <SkeletonImage
+                        src={item.image}
+                        alt={`${item.title} 商品圖`}
+                        className="transition duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <p className="mt-1.5 line-clamp-2 text-xs font-medium text-gray-900 transition group-hover:text-orange-600">
+                      {item.title}
+                    </p>
+                  </a>
                 </li>
               ))}
             </ul>

@@ -14,7 +14,7 @@ export default function GameCategories() {
   return (
     <section
       id="categories"
-      className="border-t border-gray-200 bg-white py-12"
+      className="border-y border-gray-200 bg-white py-12"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
@@ -22,9 +22,6 @@ export default function GameCategories() {
             <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
               儲值教學
             </h2>
-            <p className="mt-1 text-sm text-gray-500">
-              依平台與類型瀏覽，點擊頁籤切換。
-            </p>
           </div>
           <a
             href="#"
@@ -76,7 +73,8 @@ export default function GameCategories() {
             step={3}
           >
             {current.games.slice(0, 6).map((game) => (
-              <article key={game.id} className="group">
+              /* href 之後換成實際導向頁面 */
+              <a key={game.id} href="#" className="group block">
                 <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition group-hover:border-gray-300 group-hover:shadow-md">
                   <SkeletonImage
                     src={game.image}
@@ -84,10 +82,10 @@ export default function GameCategories() {
                     className="transition duration-500 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="mt-2 truncate text-sm font-medium text-gray-900">
+                <h3 className="mt-2 truncate text-sm font-medium text-gray-900 transition group-hover:text-orange-600">
                   {game.title}
                 </h3>
-              </article>
+              </a>
             ))}
           </Carousel>
         </div>

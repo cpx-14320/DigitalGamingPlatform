@@ -13,16 +13,13 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="border-y border-gray-200 bg-white py-12"
+      className="border-t border-gray-200 bg-white py-12"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-8 max-w-2xl">
           <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
             在 SuneoCard 購買的保障
           </h2>
-          <p className="mt-1 text-sm text-gray-500">
-            正版、透明、可退款 —— 買數位商品也該有實體通路的安心。
-          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

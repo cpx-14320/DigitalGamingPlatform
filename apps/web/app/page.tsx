@@ -17,13 +17,13 @@ export default function Home() {
       <QuickMenu />
       <GameShowcase />
       <NewArrivals />
-      <Features />
       <Rankings />
       <GameCategories />
       <ScreenshotGallery />
       <Spotlight />
       <Testimonials />
       <Pricing />
+      <Features />
     </main>
   );
 }
