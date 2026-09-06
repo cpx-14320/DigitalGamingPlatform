@@ -215,7 +215,8 @@ export default function TopupFlow({ game }: { game: QuickTopupGame }) {
 
   return (
     <>
-      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+        <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-7">
         {/* 步驟指示 */}
         <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-gray-200 pb-4">
           <StepDot n={1} label="選擇面額" done={step1Done} active={!step1Done} />
@@ -416,48 +417,23 @@ export default function TopupFlow({ game }: { game: QuickTopupGame }) {
             </div>
           </div>
 
-          {/* 4. 優惠碼 */}
-          <div>
-            <FieldLabel>優惠碼</FieldLabel>
-            <div className="mt-3 flex gap-2">
-              <input
-                aria-label="優惠碼"
-                value={promoInput}
-                onChange={(e) => setPromoInput(e.target.value)}
-                placeholder="輸入優惠碼（試試 NOVA50）"
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/30"
-              />
-              <button
-                type="button"
-                onClick={applyPromo}
-                className="shrink-0 rounded-lg border border-orange-500 px-5 py-2.5 text-sm font-semibold text-orange-600 transition hover:bg-orange-50"
-              >
-                套用
-              </button>
-            </div>
-            {promoError ? (
-              <p className="mt-2 text-xs text-red-500">{promoError}</p>
-            ) : null}
-            {appliedPromo ? (
-              <p className="mt-2 flex items-center gap-2 text-xs text-green-700">
-                已套用「{appliedPromo.code}」— {appliedPromo.label}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAppliedPromo(null);
-                    setPromoInput("");
-                  }}
-                  className="text-gray-400 underline hover:text-gray-600"
-                >
-                  移除
-                </button>
-              </p>
-            ) : null}
-          </div>
+          <p className="text-xs leading-relaxed text-gray-400">
+            {game.disclaimer}
+          </p>
+        </div>
+        </section>
 
-          {/* 訂單摘要 */}
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-            <dl className="space-y-2 text-sm">
+        {/* 右欄：結帳金額摘要（桌機 sticky，手機為表單下方卡片） */}
+        <aside className="lg:sticky lg:top-20">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <div className="flex items-baseline justify-between">
+              <span className="text-sm font-semibold text-gray-900">總計</span>
+              <span className="text-2xl font-bold text-orange-600">
+                NT$ {total.toLocaleString()}
+              </span>
+            </div>
+
+            <dl className="mt-4 space-y-2 border-t border-gray-100 pt-4 text-sm">
               <div className="flex justify-between">
                 <dt className="text-gray-500">面額</dt>
                 <dd className="font-medium text-gray-900">{denomLabel}</dd>
@@ -472,7 +448,9 @@ export default function TopupFlow({ game }: { game: QuickTopupGame }) {
               ) : null}
               <div className="flex justify-between">
                 <dt className="text-gray-500">小計</dt>
-                <dd className="text-gray-900">NT$ {subtotal.toLocaleString()}</dd>
+                <dd className="text-gray-900">
+                  NT$ {subtotal.toLocaleString()}
+                </dd>
               </div>
               {discount > 0 ? (
                 <div className="flex justify-between">
@@ -482,16 +460,51 @@ export default function TopupFlow({ game }: { game: QuickTopupGame }) {
                   </dd>
                 </div>
               ) : null}
-              <div className="flex justify-between border-t border-gray-200 pt-2 text-base font-bold">
-                <dt className="text-gray-900">應付金額</dt>
-                <dd className="text-orange-600">
-                  NT$ {total.toLocaleString()}
-                </dd>
-              </div>
             </dl>
-            <p className="mt-2 text-xs text-gray-400">
-              預計到帳：付款完成後即時發送（超商 / ATM 以繳費完成時間為準）
-            </p>
+
+            {/* 優惠碼 */}
+            <div className="mt-4 border-t border-gray-100 pt-4">
+              <label
+                htmlFor="topup-promo"
+                className="block text-xs font-medium text-gray-500"
+              >
+                優惠碼
+              </label>
+              <div className="mt-2 flex gap-2">
+                <input
+                  id="topup-promo"
+                  value={promoInput}
+                  onChange={(e) => setPromoInput(e.target.value)}
+                  placeholder="試試 NOVA50"
+                  className="w-full min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/30"
+                />
+                <button
+                  type="button"
+                  onClick={applyPromo}
+                  className="shrink-0 rounded-lg border border-orange-500 px-3 py-2 text-sm font-semibold text-orange-600 transition hover:bg-orange-50"
+                >
+                  套用
+                </button>
+              </div>
+              {promoError ? (
+                <p className="mt-2 text-xs text-red-500">{promoError}</p>
+              ) : null}
+              {appliedPromo ? (
+                <p className="mt-2 flex flex-wrap items-center gap-x-2 text-xs text-green-700">
+                  已套用「{appliedPromo.code}」— {appliedPromo.label}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAppliedPromo(null);
+                      setPromoInput("");
+                    }}
+                    className="text-gray-400 underline hover:text-gray-600"
+                  >
+                    移除
+                  </button>
+                </p>
+              ) : null}
+            </div>
 
             <button
               type="button"
@@ -501,13 +514,13 @@ export default function TopupFlow({ game }: { game: QuickTopupGame }) {
             >
               {canSubmit ? "立即購買" : "請完成上方選擇"}
             </button>
-          </div>
 
-          <p className="text-xs leading-relaxed text-gray-400">
-            {game.disclaimer}
-          </p>
-        </div>
-      </section>
+            <p className="mt-3 text-xs leading-relaxed text-gray-400">
+              預計到帳：付款完成後即時發送（超商 / ATM 以繳費完成時間為準）
+            </p>
+          </div>
+        </aside>
+      </div>
 
       {/* 手機版：底部固定結帳列 */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white px-4 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.06)] lg:hidden">

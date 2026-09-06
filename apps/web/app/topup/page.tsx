@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import TopupGameCard from "@/components/sections/TopupGameCard";
+import TopupHeader from "@/components/sections/TopupHeader";
 import TopupFlow from "@/components/topup/TopupFlow";
 import TopupIdGuide from "@/components/sections/TopupIdGuide";
 import TopupEventTeaser from "@/components/sections/TopupEventTeaser";
@@ -33,23 +33,19 @@ export default function TopupPage() {
           <span className="text-gray-900">{game.name}</span>
         </nav>
 
-        <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-          <div className="lg:sticky lg:top-20 lg:self-start">
-            <TopupGameCard game={game} />
-          </div>
+        <TopupHeader game={game} />
 
-          <div className="space-y-6">
-            <TopupFlow game={game} />
-            <TopupIdGuide help={game.idHelp} />
-            <TopupEventTeaser teaser={game.eventTeaser} />
-            <TopupReviews
-              reviews={game.reviews}
-              rating={game.rating}
-              ratingCount={game.ratingCount}
-            />
-            <MemberPerks />
-            <TopupFaq faqs={game.faqs} />
-          </div>
+        <div className="mt-6 space-y-6">
+          <TopupFlow game={game} />
+          <TopupIdGuide help={game.idHelp} />
+          <TopupEventTeaser teaser={game.eventTeaser} />
+          <TopupReviews
+            reviews={game.reviews}
+            rating={game.rating}
+            ratingCount={game.ratingCount}
+          />
+          <MemberPerks />
+          <TopupFaq faqs={game.faqs} />
         </div>
       </div>
     </main>
