@@ -3,7 +3,9 @@
 // 各區塊資料逐步拆成 lib/data/<區塊>.ts，並由這裡 re-export，
 // 元件維持 import { ... } from "@/lib/data" 不變。
 export * from "./creators";
+export * from "./member-task";
 export * from "./news";
+export * from "./pre";
 
 export type HeroSlide = {
   id: string;

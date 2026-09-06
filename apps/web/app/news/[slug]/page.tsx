@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import CampaignSection from "@/components/campaign/CampaignSection";
 import SkeletonImage from "@/components/SkeletonImage";
 import {
   gameNews,
   getArticle,
+  memberTask,
   newsCategoryLabel,
-  newsCover,
+  pre,
   toNewsCard,
   type NewsBlock,
 } from "@/lib/data";
@@ -55,7 +57,8 @@ function Block({ block }: { block: NewsBlock }) {
         <SkeletonImage
           src={block.src}
           alt={block.caption ?? ""}
-          ratioClassName="aspect-[16/9] rounded-xl border border-gray-200"
+          natural
+          ratioClassName="rounded-xl border border-gray-200"
         />
         {block.caption ? (
           <figcaption className="mt-2 text-center text-xs text-gray-400">
@@ -66,7 +69,9 @@ function Block({ block }: { block: NewsBlock }) {
     );
   }
   return (
-    <p className="mt-4 text-sm leading-7 text-gray-700">{block.text}</p>
+    <p className="mt-4 whitespace-pre-line text-sm leading-7 text-gray-700">
+      {block.text}
+    </p>
   );
 }
 
@@ -79,6 +84,9 @@ export default async function NewsDetailPage({
   const article = getArticle(slug);
   if (!article) notFound();
 
+  // 側欄有資料才變雙欄；pre / member-task 兩檔清空 → 自動單欄滿版
+  const hasAside = pre.length > 0 || memberTask.length > 0;
+
   return (
     <main className="pb-16">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
@@ -90,12 +98,17 @@ export default async function NewsDetailPage({
           <Link href="/news" className="hover:text-gray-900">
             遊戲新聞
           </Link>
-          <span className="mx-2 text-gray-300">/</span>
-          <span className="line-clamp-1 text-gray-900">{article.title}</span>
         </nav>
 
-        <article className="mx-auto max-w-3xl">
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+        <div
+          className={
+            hasAside
+              ? "grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]"
+              : undefined
+          }
+        >
+          <article className="min-w-0">
+            <div className="flex items-center gap-2 text-xs text-gray-400">
             <Link
               href={`/news?cat=${article.category}`}
               className="rounded bg-orange-50 px-1.5 py-0.5 font-medium text-orange-600 hover:bg-orange-100"
@@ -109,35 +122,11 @@ export default async function NewsDetailPage({
             {article.title}
           </h1>
 
-          <SkeletonImage
-            src={newsCover(article)}
-            alt={article.title}
-            ratioClassName="mt-6 aspect-[16/9] rounded-xl border border-gray-200"
-          />
-
-          <div className="mt-2">
+          <div className="mt-4">
             {article.body.map((block, i) => (
               <Block key={i} block={block} />
             ))}
           </div>
-
-          {article.sourceUrl ? (
-            <p className="mt-8 text-xs text-gray-400">
-              資料來源：
-              <a
-                href={article.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-orange-600 hover:underline"
-              >
-                {article.source ?? article.sourceUrl}
-              </a>
-            </p>
-          ) : article.source ? (
-            <p className="mt-8 text-xs text-gray-400">
-              資料來源：{article.source}
-            </p>
-          ) : null}
 
           <div className="mt-10">
             <Link
@@ -147,9 +136,24 @@ export default async function NewsDetailPage({
               ← 回遊戲新聞列表
             </Link>
           </div>
-        </article>
+          </article>
+
+          {hasAside ? (
+            <aside className="hidden space-y-8 lg:block lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto lg:overscroll-contain">
+              <CampaignSection heading="遊戲事前登錄" items={pre} />
+              <CampaignSection heading="會員活動" items={memberTask} />
+            </aside>
+          ) : null}
+        </div>
 
         <RecommendedNews article={article} />
+
+        {hasAside ? (
+          <div className="mt-12 space-y-10 lg:hidden">
+            <CampaignSection heading="遊戲事前登錄" items={pre} />
+            <CampaignSection heading="會員活動" items={memberTask} />
+          </div>
+        ) : null}
       </div>
     </main>
   );

@@ -7,10 +7,12 @@ type SkeletonImageProps = {
   alt: string;
   /** 額外加在 <img> 上的 class（例如 hover 放大） */
   className?: string;
-  /** 外框尺寸／比例／形狀，預設 1:1（例如 aspect-video、size-9 rounded-full） */
+  /** 外框尺寸／比例／形狀，預設 1:1（例如 aspect-video、size-9 rounded-full）；natural 模式下只當形狀（rounded/border） */
   ratioClassName?: string;
   /** 外框改用 absolute inset-0 撐滿父層（父層需自行提供 relative + 尺寸），例如首頁大圖輪播 */
   fill?: boolean;
+  /** 依原始比例、寬度 100% 顯示（不裁切、不套 skeleton），用於文章內文圖片 */
+  natural?: boolean;
   /** 是否優先載入（LCP 圖片用），預設 lazy */
   loading?: "eager" | "lazy";
 };
@@ -25,6 +27,7 @@ export default function SkeletonImage({
   className = "",
   ratioClassName = "aspect-square",
   fill = false,
+  natural = false,
   loading = "lazy",
 }: SkeletonImageProps) {
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +45,18 @@ export default function SkeletonImage({
   const attachImg = useCallback((node: HTMLImageElement | null) => {
     if (node?.complete && node.naturalWidth > 0) setLoaded(true);
   }, []);
+
+  if (natural) {
+    // 依原始比例、寬度 100% 顯示，不裁切、不套 skeleton（用於文章內文圖片）
+    return (
+      <img
+        src={src}
+        alt={alt}
+        loading={loading}
+        className={`block h-auto w-full bg-gray-100 ${ratioClassName} ${className}`}
+      />
+    );
+  }
 
   return (
     <div

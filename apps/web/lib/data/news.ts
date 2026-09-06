@@ -32,8 +32,6 @@ export type GameNewsArticle = {
   cover?: string; // 沒填 → body 第一個 image block 的 src
   summary?: string; // 沒填 → body 前 SUMMARY_LEN 字自動擷取
   body: NewsBlock[];
-  source?: string;
-  sourceUrl?: string;
 };
 
 export type GameNewsCard = {
@@ -69,18 +67,121 @@ function placeholderBody(
   ];
 }
 
-type SeedArticle = Omit<GameNewsArticle, "body"> & { summary: string };
+type SeedArticle = Omit<GameNewsArticle, "body"> & {
+  summary: string;
+  body?: NewsBlock[]; // 沒填 → 用佔位內文
+};
 
 const seed: SeedArticle[] = [
   {
     slug: "280781",
     date: "2026-09-02",
-    title: "慶祝9月2日「古夫之日」！特別關卡現正登場！",
+    title:
+      "《SD鋼彈 G世代 永恆》推出9月2日「古夫之日」特別關卡！UR「全裝甲百式改（EX）」等新陣容於精選機體補給登場",
     category: "mobile",
-    games: ["機動戰士鋼彈"],
+    games: ["SD鋼彈 G世代 永恆", "機動戰士鋼彈"],
     cover: "/images/gameNews/2609/02/280781/00.webp",
     summary:
-      "9月2日是古夫(92)之日！(※兩者日文發音相近。)慶祝此特殊日子的特別關卡現正登場。完成關卡即可獲得「古夫」標籤專用SP化晶片100個和鑽石100個，敬請踴躍挑戰！",
+      "Bandai Namco Entertainment Inc. 發行的《SD鋼彈 G世代 永恆》現正限期推出慶祝9月2日「古夫之日」的特別關卡，並同步開放 UR「全裝甲百式改（EX）」、UR「D鋼彈3號機（EX）」等陣容的精選機體補給，以及最多可獲得總計 3,000 顆鑽石的「上線500日紀念特別活動」。",
+    body: [
+      {
+        type: "paragraph",
+        text: "Bandai Namco Entertainment Inc. 所發行之 App Store、Google Play 及 DMM GAMES 專用應用程式《SD鋼彈 G世代 永恆》現正限期推出慶祝9月2日「古夫之日」的特別關卡，還有 UR「全裝甲百式改（EX）」、UR「D鋼彈3號機（EX）」、UR「Z鋼彈（EX）」等陣容的精選機體補給，以及最多可獲得總計 3,000 顆鑽石的「上線500日紀念特別活動」同步登場。",
+      },
+      {
+        type: "paragraph",
+        text: "《SD鋼彈 G世代 永恆》現於 App Store、Google Play、DMM GAMES 提供",
+      },
+      {
+        type: "heading",
+        text: "慶祝9月2日「古夫之日」！特別關卡現正登場！",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/02.webp",
+        caption: "「古夫之日」特別關卡",
+      },
+      {
+        type: "paragraph",
+        text: "9月2日是古夫（92）之日！（※兩者日文發音相近。）慶祝此特殊日子的特別關卡現正登場。完成關卡即可獲得「古夫」標籤專用 SP 化晶片 100 個和鑽石 100 個，敬請踴躍挑戰！",
+      },
+      {
+        type: "paragraph",
+        text: "▼預計登場期間▼\n‧現正登場 ～ 9/10 10:59（GMT+8）為止\n\n▼注意事項▼\n‧登場期間及內容有可能不經預告逕行變更。\n※活動詳情請見遊戲內公告。",
+      },
+      {
+        type: "heading",
+        text: "UR「全裝甲百式改（EX）」、UR「D鋼彈3號機（EX）」等陣容正於精選機體補給中登場！",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/03.webp",
+        caption: "精選機體補給",
+      },
+      {
+        type: "paragraph",
+        text: "限期 UR 單位「全裝甲百式改（EX）」／UR「克瓦特羅‧巴吉納」於精選機體補給中新登場！除了新亮相的 UR「D鋼彈3號機（EX）」／UR「達力‧尼耶爾‧岡茲」、UR 支援人員「布萊特‧諾亞＆格里普斯Ⅱ」，限期 UR 單位「Z鋼彈（EX）」／UR「卡密兒‧維丹」也會再度登場。",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/04.webp",
+        caption: "UR「全裝甲百式改（EX）」",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/05.webp",
+        caption: "UR「D鋼彈3號機（EX）」",
+      },
+      {
+        type: "paragraph",
+        text: "▼機體補給詳情▼\n‧預計登場期間：現正登場 ～ 9/23 10:59（GMT+8）為止\n※登場期間及內容有可能不經預告逕行變更。\n※詳情請至遊戲內查看。",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/06.webp",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/07.webp",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/08.webp",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/09.webp",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/10.webp",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/11.webp",
+      },
+      {
+        type: "heading",
+        text: "歡慶《SD鋼彈 G世代 永恆》正式上線500日！現正推出登入獎勵！",
+      },
+      {
+        type: "image",
+        src: "/images/gameNews/2609/02/280781/12.webp",
+        caption: "上線500日紀念特別活動",
+      },
+      {
+        type: "paragraph",
+        text: "為慶祝《SD鋼彈 G世代 永恆》於8月28日正式上線滿 500 天，「上線500日紀念特別活動」現正實施中！於活動期間內登入，最多可獲得總計 3,000 個鑽石。",
+      },
+      {
+        type: "paragraph",
+        text: "■報酬內容\n第1天：鑽石 ×500\n第2天：鑽石 ×500\n第3天：鑽石 ×500\n第4天：鑽石 ×1,500",
+      },
+      {
+        type: "paragraph",
+        text: "▼活動詳情▼\n‧活動預計登場期間：現正登場 ～ 10/1 10:59（GMT+8）為止\n※登場期間及內容有可能不經預告逕行變更。\n※詳情請至遊戲內查看。",
+      },
+    ],
   },
   {
     slug: "280783",
@@ -135,9 +236,9 @@ const seed: SeedArticle[] = [
   },
 ];
 
-export const gameNews: GameNewsArticle[] = seed.map((a) => ({
+export const gameNews: GameNewsArticle[] = seed.map(({ body, ...a }) => ({
   ...a,
-  body: placeholderBody(a.summary, a.cover ?? FALLBACK_COVER, a.title),
+  body: body ?? placeholderBody(a.summary, a.cover ?? FALLBACK_COVER, a.title),
 }));
 
 // ---- 衍生與工具 ----
