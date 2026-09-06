@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 type SkeletonImageProps = {
   src: string;
@@ -27,17 +27,21 @@ export default function SkeletonImage({
   fill = false,
   loading = "lazy",
 }: SkeletonImageProps) {
-  const imgRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
+  const [prevSrc, setPrevSrc] = useState(src);
+
+  // src 變更 → 重置為未載入（於 render 期間調整，不用 effect）
+  if (src !== prevSrc) {
+    setPrevSrc(src);
+    setLoaded(false);
+  }
 
   // 圖片可能在 hydration 前就下載完成（本地小圖／快取／SSR），
-  // 那次 load 事件沒人接，onLoad 之後也不會再觸發。
-  // 掛載時補一次 complete 檢查；src 變更時重置為未載入。
-  useEffect(() => {
-    setLoaded(false);
-    const img = imgRef.current;
-    if (img?.complete && img.naturalWidth > 0) setLoaded(true);
-  }, [src]);
+  // 那次 load 事件沒人接、onLoad 之後也不會再觸發；
+  // callback ref 於掛載時補一次 complete 檢查。
+  const attachImg = useCallback((node: HTMLImageElement | null) => {
+    if (node?.complete && node.naturalWidth > 0) setLoaded(true);
+  }, []);
 
   return (
     <div
@@ -50,7 +54,7 @@ export default function SkeletonImage({
         }`}
       />
       <img
-        ref={imgRef}
+        ref={attachImg}
         src={src}
         alt={alt}
         loading={loading}
