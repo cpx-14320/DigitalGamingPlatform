@@ -60,7 +60,9 @@ export default function SkeletonImage({
         loading={loading}
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(true)}
-        className={`absolute inset-0 size-full object-cover transition-opacity duration-300 ${
+        // 用 transition（非 transition-opacity）：淡入與 hover 縮放（transform）都會補間；
+        // 呼叫端傳入的 duration 會覆寫下面的預設
+        className={`absolute inset-0 size-full object-cover transition duration-300 ${
           loaded ? "opacity-100" : "opacity-0"
         } ${className}`}
       />
