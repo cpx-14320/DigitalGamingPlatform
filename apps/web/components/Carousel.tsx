@@ -32,6 +32,9 @@ type CarouselProps = {
 
 // 拖曳超過這個距離（px）才視為「滑動」，用來抑制放開後誤觸的點擊
 const DRAG_THRESHOLD = 6;
+// 放開時：淨位移超過這個距離，或甩動速度夠快，就往該方向換一頁；否則回到起始頁
+const COMMIT_DISTANCE = 45; // px
+const COMMIT_VELOCITY = 0.4; // px/ms
 
 /**
  * 以每一張 slide 實際能「靠左對齊」的捲動位置作為停靠點（stop）。
@@ -101,8 +104,14 @@ export default function Carousel({
     active: false,
     startX: 0,
     startScroll: 0,
+    startPage: 0,
     moved: false,
     pointerId: -1,
+    // 放開前的兩筆取樣，用來估算甩動速度
+    lastX: 0,
+    lastT: 0,
+    prevX: 0,
+    prevT: 0,
   });
   const suppressClickRef = useRef(false);
 
@@ -167,12 +176,20 @@ export default function Carousel({
     if (e.pointerType !== "mouse" || e.button !== 0) return;
     const el = trackRef.current;
     if (!el) return;
+    const stops = getStops(el);
+    stopsRef.current = stops;
+    const now = performance.now();
     dragRef.current = {
       active: true,
       startX: e.clientX,
       startScroll: el.scrollLeft,
+      startPage: nearestIndex(stops, el.scrollLeft),
       moved: false,
       pointerId: e.pointerId,
+      lastX: e.clientX,
+      lastT: now,
+      prevX: e.clientX,
+      prevT: now,
     };
     el.setPointerCapture(e.pointerId);
     // 拖曳期間關掉 snap 與平滑捲動，讓畫面即時跟手、且能停在任意位置
@@ -190,6 +207,11 @@ export default function Carousel({
     const dx = e.clientX - drag.startX;
     if (Math.abs(dx) > DRAG_THRESHOLD) drag.moved = true;
     el.scrollLeft = drag.startScroll - dx;
+    // 滾動兩筆取樣視窗，供放開時估算甩動速度
+    drag.prevX = drag.lastX;
+    drag.prevT = drag.lastT;
+    drag.lastX = e.clientX;
+    drag.lastT = performance.now();
   };
 
   // 阻止圖片 / 連結的原生拖曳（會產生殘影並吃掉 pointermove，導致無法拖曳捲動）
@@ -206,15 +228,27 @@ export default function Carousel({
       if (el.hasPointerCapture(drag.pointerId)) {
         el.releasePointerCapture(drag.pointerId);
       }
-      // 還原 snap／平滑捲動；停在哪就吸附最接近的停靠點，不硬拉回
+      // 還原 snap／平滑捲動
       el.style.scrollBehavior = "";
       el.style.scrollSnapType = "";
-      const stops = getStops(el);
-      stopsRef.current = stops;
-      el.scrollTo({
-        left: stops[nearestIndex(stops, el.scrollLeft)],
-        behavior: "smooth",
-      });
+
+      // 淨位移（>0＝往下一頁方向）與放開前的甩動速度（px/ms，>0＝游標往右＝往上一頁）
+      const netDx = el.scrollLeft - drag.startScroll;
+      const dt = drag.lastT - drag.prevT;
+      const vx = dt > 0 ? (drag.lastX - drag.prevX) / dt : 0;
+
+      let dir = 0;
+      if (Math.abs(netDx) > COMMIT_DISTANCE) {
+        dir = netDx > 0 ? 1 : -1;
+      } else if (
+        Math.abs(vx) > COMMIT_VELOCITY &&
+        Math.abs(netDx) > DRAG_THRESHOLD
+      ) {
+        dir = vx < 0 ? 1 : -1;
+      }
+
+      // dir 為 0＝沒達標，回到起始頁；否則從起始頁往該方向換一頁
+      goToPage(drag.startPage + dir);
     }
     if (drag.moved) suppressClickRef.current = true;
     drag.moved = false;
