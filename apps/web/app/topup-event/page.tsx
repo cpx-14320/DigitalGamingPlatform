@@ -11,7 +11,7 @@ import { defaultTopupGame } from "@/lib/data";
 const game = defaultTopupGame;
 
 export const metadata: Metadata = {
-  title: `${game.name} 儲值活動 | NovaPlay`,
+  title: `${game.name} 儲值活動 | SuneoCard`,
   description: game.rebate.content,
 };
 

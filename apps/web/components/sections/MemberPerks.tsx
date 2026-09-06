@@ -6,7 +6,7 @@ export default function MemberPerks() {
   return (
     <ActivityCard id="member-perks" title="會員優惠">
       <p className="mb-4 text-center text-sm text-gray-500">
-        NovaPlay 會員在所有遊戲儲值都適用的通用優惠。
+        SuneoCard 會員在所有遊戲儲值都適用的通用優惠。
       </p>
       <ul className="grid gap-3 sm:grid-cols-2">
         {memberPerks.map((perk) => (

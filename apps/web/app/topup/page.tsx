@@ -13,7 +13,7 @@ import { quickTopupGame } from "@/lib/data";
 const game = quickTopupGame;
 
 export const metadata: Metadata = {
-  title: `${game.name} 快速儲值 | NovaPlay`,
+  title: `${game.name} 快速儲值 | SuneoCard`,
   description: `為《${game.name}》快速儲值${game.currency}：輸入遊戲 ID、選擇面額與付款方式，付款後最快 1 分鐘到帳。`,
 };
 

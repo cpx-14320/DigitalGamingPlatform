@@ -1413,9 +1413,9 @@ export const topupGames: Record<string, TopupGame> = {
       title: "會員扣點儲值回饋",
       period: "2026/09/01 (00:00) ~ 2026/09/30 (23:59)",
       content:
-        "活動期間，使用「NovaPlay 會員扣點」單筆儲值以下指定面額至「星軌旅人」遊戲帳號中，即可獲得以下對應回饋。",
+        "活動期間，使用「SuneoCard 會員扣點」單筆儲值以下指定面額至「星軌旅人」遊戲帳號中，即可獲得以下對應回饋。",
       notice:
-        "若您的 NovaPlay 會員帳號點數不足，仍可直接選擇會員扣點付款，系統會引導您進行差額儲值，也可以先至官網或 APP 儲值。",
+        "若您的 SuneoCard 會員帳號點數不足，仍可直接選擇會員扣點付款，系統會引導您進行差額儲值，也可以先至官網或 APP 儲值。",
       rows: [
         { amount: 1000, reward: "星軌福袋（銀）", qty: 10 },
         { amount: 2000, reward: "星軌福袋（金）", qty: 6 },
@@ -1432,11 +1432,11 @@ export const topupGames: Record<string, TopupGame> = {
         label: "扣點抽 50000 點",
         period: "2026/09/01 (00:00) ~ 2026/09/30 (23:59)",
         content:
-          "活動期間，使用「NovaPlay 會員扣點」單筆消費任意面額，即可參加抽獎，最高可連抽 15 次，豐富大獎等你帶回家！",
+          "活動期間，使用「SuneoCard 會員扣點」單筆消費任意面額，即可參加抽獎，最高可連抽 15 次，豐富大獎等你帶回家！",
         prizes: [
           {
             id: "p1",
-            name: "NovaPlay 會員點數 最高 50000 點",
+            name: "SuneoCard 會員點數 最高 50000 點",
             image: "https://picsum.photos/seed/topup-prize-1/320/320",
           },
           {
@@ -1476,12 +1476,12 @@ export const topupGames: Record<string, TopupGame> = {
           },
           {
             id: "p9",
-            name: "NovaPlay 會員點數 30000 點",
+            name: "SuneoCard 會員點數 30000 點",
             image: "https://picsum.photos/seed/topup-prize-9/320/320",
           },
           {
             id: "p10",
-            name: "NovaPlay 會員點數 10000 點",
+            name: "SuneoCard 會員點數 10000 點",
             image: "https://picsum.photos/seed/topup-prize-10/320/320",
           },
         ],
@@ -1509,7 +1509,7 @@ export const topupGames: Record<string, TopupGame> = {
           },
           {
             id: "e3",
-            name: "NovaPlay 現金抵用券 NT$300",
+            name: "SuneoCard 現金抵用券 NT$300",
             image: "https://picsum.photos/seed/topup-prize-e3/320/320",
           },
           {
@@ -1538,7 +1538,7 @@ export const topupGames: Record<string, TopupGame> = {
       title: "新會員註冊禮",
       period: "2026/09/01 (00:00) ~ 2026/09/30 (23:59)",
       content:
-        "活動期間註冊成為 NovaPlay 會員並完成 e-mail、手機驗證，即可獲得會員點數最高 5000 點與現金抵用券，再加碼抽 iPhone 17 Pro Max。",
+        "活動期間註冊成為 SuneoCard 會員並完成 e-mail、手機驗證，即可獲得會員點數最高 5000 點與現金抵用券，再加碼抽 iPhone 17 Pro Max。",
     },
     notes: [
       "購買之遊戲點數或受贈之虛寶序號如已兌換或使用，則不得取消該筆交易。",
@@ -1620,7 +1620,7 @@ export const quickTopupGames: Record<string, QuickTopupGame> = {
   "nova-saga": {
     slug: "nova-saga",
     name: "星軌旅人",
-    publisher: "NovaPlay Studios",
+    publisher: "SuneoCard Studios",
     cover: "https://picsum.photos/seed/nova-saga-cover/600/800",
     banner: "https://picsum.photos/seed/topup-nova-hero/1600/560",
     rating: 4.8,
@@ -1689,7 +1689,7 @@ export const quickTopupGames: Record<string, QuickTopupGame> = {
       },
       {
         id: "points",
-        label: "NovaPlay 會員扣點",
+        label: "SuneoCard 會員扣點",
         icon: "points",
         methods: [
           {

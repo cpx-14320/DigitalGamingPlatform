@@ -18,7 +18,7 @@ export default function Features() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-8 max-w-2xl">
           <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
-            在 NovaPlay 購買的保障
+            在 SuneoCard 購買的保障
           </h2>
           <p className="mt-1 text-sm text-gray-500">
             正版、透明、可退款 —— 買數位商品也該有實體通路的安心。

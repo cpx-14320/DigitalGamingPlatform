@@ -152,7 +152,7 @@ export default function Navbar() {
           <span className="grid size-8 place-items-center rounded-lg bg-orange-500 text-sm font-black text-white">
             N
           </span>
-          <span className="text-lg tracking-tight">NovaPlay</span>
+          <span className="text-lg tracking-tight">SuneoCard</span>
         </a>
 
         <SearchBar className="hidden flex-1 md:flex" />

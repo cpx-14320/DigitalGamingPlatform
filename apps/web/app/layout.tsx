@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NovaPlay 遊戲數位商城",
+  title: "SuneoCard 遊戲數位商城",
   description:
-    "NovaPlay 是專業的遊戲數位商品商城，提供 PC、主機與手機遊戲的正版序號、DLC 與點數卡，價格透明、下載即玩。",
+    "SuneoCard 是專業的遊戲數位商品商城，提供 PC、主機與手機遊戲的正版序號、DLC 與點數卡，價格透明、下載即玩。",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

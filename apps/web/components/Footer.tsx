@@ -9,7 +9,7 @@ const groups = [
   },
   {
     title: "關於",
-    links: ["關於 NovaPlay", "合作提案", "人才招募", "新聞中心"],
+    links: ["關於 SuneoCard", "合作提案", "人才招募", "新聞中心"],
   },
 ];
 
@@ -25,7 +25,7 @@ export default function Footer() {
               <span className="grid size-8 place-items-center rounded-lg bg-orange-500 text-sm font-black text-white">
                 N
               </span>
-              <span className="text-lg">NovaPlay</span>
+              <span className="text-lg">SuneoCard</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-gray-500">
               專業的遊戲數位商品商城，正版授權、付款即發碼、價格透明。
@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-gray-200 pt-6 text-xs text-gray-400 sm:flex-row">
-          <p>© {new Date().getFullYear()} NovaPlay. 本頁為 Tailwind 練習用範例，非真實服務。</p>
+          <p>© {new Date().getFullYear()} SuneoCard. 本頁為 Tailwind 練習用範例，非真實服務。</p>
           <div className="flex gap-5">
             <a href="#" className="transition hover:text-gray-600">
               服務條款
